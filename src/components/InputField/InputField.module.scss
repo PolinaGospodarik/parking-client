@@ -1,0 +1,33 @@
+//@use "../../common/styles/scss/variables" as *;
+//@use "../../common/styles/scss/mixin" as *;
+//
+//.inputFieldWrapper{
+//  display: flex;
+//  flex-direction: column;
+//  margin-bottom: 8px;
+//}
+//.inputField{
+//  border-radius: 10px;
+//  background-color: transparent;
+//  border: 3px solid $grey;
+//  padding: 10px 20px;
+//
+//  @include font($fontFamily, 18px, $fontPrimaryColor, 700);
+//}
+//
+//.inputField::placeholder {
+//  @include font($fontFamily, 18px, $grey, 700);
+//  color: $grey;
+//}
+//.error {
+//  @include font($fontFamily, 12px, $red, 600);
+//  line-height: 12px;
+//  min-height: 12px;
+//}
+//
+//.label{
+//  display: inline-block;
+//  margin-bottom: 5px;
+//
+//  @include font($fontFamily, 20px, $fontPrimaryColor, 700);
+//}

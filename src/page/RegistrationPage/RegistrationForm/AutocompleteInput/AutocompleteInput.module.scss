@@ -1,0 +1,36 @@
+//@use "../../../../common/styles/scss/variables" as *;
+//@use "../../../../common/styles/scss/mixin" as *;
+//
+//.autocompleteWrapper {
+//  position: relative;
+//}
+//
+//.dropdown {
+//  position: absolute;
+//  top: 100%;
+//  left: 0;
+//  right: 0;
+//  background: white;
+//  border: 2px solid $grey;
+//  z-index: 10;
+//  border-radius: 10px;
+//  max-height: 200px;
+//  overflow-y: auto;
+//  margin-top: 4px;
+//
+//  @include font($fontFamily, 20px, $fontPrimaryColor, 700);
+//}
+//
+//.option {
+//  padding: 10px 20px;
+//  cursor: pointer;
+//
+//  &:hover {
+//    background: $secondaryСolor;
+//    color: $fontSecondaryColor;
+//  }
+//}
+//
+//.inputWithDropdown {
+//  position: relative;
+//}

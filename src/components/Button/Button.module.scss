@@ -1,0 +1,48 @@
+//@use "../../common/styles/scss/mixin" as *;
+//@use "../../common/styles/scss/variables" as *;
+//
+//.button {
+//  padding: 700px 20px;
+//  @include font('Nunito', 20px, $fontSecondaryColor, 700);
+//  border-radius: 10px;
+//  background-color: #008A5E;
+//
+//  &:hover {
+//    background-color: #da1d54;
+//  }
+//}
+////
+////.primary {
+////  background-color: $secondaryСolor;
+////  color: $primaryColor;
+////  width: 100%;
+////}
+////
+////.secondary {
+////  background-color: $secondaryСolor;
+////  color: $primaryColor;
+////  height: 50px;
+////}
+////
+////.outlined {
+////  background-color: transparent;
+////  border: 2px solid #007bff;
+////  color: #007bff;
+////}
+////
+////.small {
+////  font-size: 12px;
+////  padding: 5px 10px;
+////}
+////
+////.medium {
+////  @include font('Nunito', 18px, $fontSecondaryColor, 600);
+////  padding: 10px 20px;
+////}
+////
+////.large {
+////  @include font('Nunito', 20px, $fontSecondaryColor, 700);
+////  padding: 13px 70px;
+////}
+//
+//

@@ -1,0 +1,41 @@
+@use "../../../common/styles/scss/variables" as *;
+@use "../../../common/styles/scss/mixin" as *;
+
+.registration{
+  background-color: $primaryColor;
+  padding: 50px 0;
+  height: 100%;
+}
+
+.registrationWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  margin-bottom: 50px;
+  width: 1000px;
+  text-align: center;
+}
+
+.form{
+  width: 400px;
+}
+
+.passwordWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.inputWrapper{
+  margin-bottom: 20px;
+}
+
+.generatedPassword{
+  width: 65%;
+}
+.wrapperPasswordButton{
+  margin-top: 1%;
+}
