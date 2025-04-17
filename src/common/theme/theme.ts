@@ -101,6 +101,56 @@ const theme = createTheme({
                 },
             },
         },
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#008A5E', // верхняя панель
+                    color: '#FFF',
+                },
+            },
+        },
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: '#008A5E', // боковая панель
+                    color: '#FFF',
+                },
+            },
+        },
+        MuiListItemButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius: '10px',
+                    fontFamily: 'Nunito, Arial, sans-serif',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    '&.Mui-selected': {
+                        backgroundColor: '#F5F5F5',
+                        color: '#F5F5F5',
+                        fontWeight: 900,
+                        '& .MuiListItemIcon-root': {
+                            color: '#F5F5F5',
+                        },
+                        '&:hover': {
+                            backgroundColor: '#006f4d',
+                        },
+                    },
+                    '&:hover': {
+                        backgroundColor: 'rgb(1,115,79)',
+                    },
+                },
+            },
+        },
+        MuiListItemText: {
+            styleOverrides: {
+                primary: {
+                    fontFamily: 'Nunito, Arial, sans-serif',
+                    fontWeight: 600,
+                    fontSize: '18px',
+                },
+            },
+        },
+
     },
 });
 

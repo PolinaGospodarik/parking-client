@@ -8,8 +8,8 @@ const Header = () => {
             <Box sx={{ backgroundColor: "primary.main", p: "10px 0" }}>
                 <Container maxWidth="lg">
                     <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <Logo />
-                        <DynamicTabs />
+                        <Logo/>
+                        <DynamicTabs/>
                     </Box>
                 </Container>
             </Box>

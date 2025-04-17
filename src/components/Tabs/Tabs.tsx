@@ -17,7 +17,7 @@ const MyTabs: React.FC = () => {
 
     return (
         <TabContext value={value}>
-            <Box sx={{p: 1, position: 'relative', zIndex: 0}}>
+            <Box sx={{position: 'relative', zIndex: 0}}>
                 <TabList onChange={handleChange} aria-label="dynamic tabs example">
                     {tabData.map((tab, index) => (
                         <Tab key={index} label={tab.label} value={`${index + 1}`} />
