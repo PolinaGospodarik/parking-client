@@ -33,8 +33,8 @@ const RegistrationForm = () => {
         e.preventDefault();
 
         const newErrors = { fullName: "", tel: "" , role: ""};
-        if (!fullName) newErrors.fullName = "Телефон обязателен!";
-        if (!tel) newErrors.tel = "Пароль обязателен!";
+        if (!fullName) newErrors.fullName = "ФИО обязательно!";
+        if (!tel) newErrors.tel = "Телефон обязателен!";
         if (!role) newErrors.role = "Роль обязательна!";
         setErrors(newErrors);
 
@@ -52,16 +52,16 @@ const RegistrationForm = () => {
         <>
             <Box sx={{p: '50px 0'}}>
                 <Box sx={{ maxWidth: '400px', margin: '0 auto' }}>
-                    <Typography variant="h1">Создание пользователя</Typography>
+                    <Typography variant="h4" mb="35px">Создание пользователя</Typography>
                     <form onSubmit={handleSubmit}>
                         <Box>
                             <InputField
                                 label="ФИО"
                                 type="text"
                                 value={fullName}
-                                handleChange={handleChange}
+                                onChange={handleChange}
                                 name="fullName"
-                                error={errors.fullName}
+                                error={Boolean(errors.fullName)}
                                 placeholder="Введите ваше ФИО"
                                 className={styles.input}
                                 fullWidth={true}
@@ -70,9 +70,9 @@ const RegistrationForm = () => {
                                 label="Телефон"
                                 type="tel"
                                 value={tel}
-                                handleChange={handleChange}
+                                onChange={handleChange}
                                 name="tel"
-                                error={errors.tel}
+                                error={Boolean(errors.tel)}
                                 placeholder="Введите a номер телефона"
                                 className={styles.input}
                                 fullWidth={true}
@@ -91,7 +91,7 @@ const RegistrationForm = () => {
                                     label="Сгенерированный пароль"
                                     type="text"
                                     value={generatedPassword}
-                                    handleChange={() => {}}
+                                    onChange={() => {}}
                                     name="generatedPassword"
                                     placeholder=""
                                     className={styles.generatedPassword}

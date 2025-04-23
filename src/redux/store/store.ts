@@ -1,8 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {loginSlice} from "../slice/loginSlice.ts";
+import loginSlice from "../slice/loginSlice.ts";
+import registrationSlice from "../slice/registrationSlice.ts";
+import userCarSlice from "../slice/userCarSlice.ts";
+import userBookingSlice from "../slice/userBookingSlice.ts";
+import adminSlice from "../slice/adminSlice.ts";
 
 const rootReducer = {
-    auth: loginSlice.reducer,
+    login: loginSlice,
+    registration: registrationSlice,
+    userCar: userCarSlice,
+    userBooking: userBookingSlice,
+    admin: adminSlice,
 };
 const store = configureStore({
     reducer: rootReducer

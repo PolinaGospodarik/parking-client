@@ -6,7 +6,7 @@ import {Box} from "@mui/material";
 const RegistrationPage = () => {
     return (
         <>
-            <Box sx={{ backgroundColor: 'secondary.main', height:"100vh" }}>
+            <Box sx={{ backgroundColor: 'secondary.light', height:"100vh" }}>
                 <Header/>
                 <RegistrationForm/>
             </Box>

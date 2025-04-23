@@ -28,7 +28,7 @@ const initialState: RegistrationState = {
 }
 
 export const registration = createAsyncThunk<string, RegistrationState>(
-    'auth/login',
+    'registration/registration',
     async ({fullName, tel, role}, {rejectWithValue}) => {
         try {
             const response = await axios.post(API_URL + "admin/register/create", {
@@ -36,7 +36,6 @@ export const registration = createAsyncThunk<string, RegistrationState>(
                 phoneNumber: tel,
                 role: role
             });
-            console.log(response.data.password);
 
             return response.data.password;
         } catch (error: any) {
@@ -47,8 +46,8 @@ export const registration = createAsyncThunk<string, RegistrationState>(
 );
 
 
-export const loginSlice = createSlice({
-    name: "auth",
+export const registrationSlice = createSlice({
+    name: "registration",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -67,6 +66,6 @@ export const loginSlice = createSlice({
 
     }
 })
-const {actions, reducer} = loginSlice;
+const {actions, reducer} = registrationSlice;
 export const {} = actions;
 export default reducer;

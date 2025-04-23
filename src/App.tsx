@@ -1,19 +1,36 @@
 import './App.css'
 import "../src/utils/axiosInterceptor"
-// import RegistrationForm from "./components/RegistrationForm/RegistrationForm.tsx";
-import RegistrationPage from "./page/RegistrationPage/RegistrationPage.tsx";
 import LoginPage from "./page/LoginPage/LoginPage.tsx";
-import Sidebar from "./components/Sidebar/Sidebar.tsx";
+import DashboardRoutes from "./routes/DashboardRoutes.tsx";
+import {useAppDispatch, useAppSelector} from "./hook.ts";
+import {Routes, Route, Navigate} from "react-router-dom";
+import {useEffect} from "react";
+import {setRoleFromStorage} from "./redux/slice/loginSlice.ts";
+import AdminRoutes from "./routes/AdminRoutes.tsx";
 
-// import InputField from "./components/InputField/InputField";
 
 function App() {
+    const dispatch = useAppDispatch();
+    const role = useAppSelector((state) => state.login.role);
+
+    useEffect(() => {
+        dispatch(setRoleFromStorage());
+    }, [dispatch]);
 
   return (
     <>
-        <LoginPage/>
-        <RegistrationPage/>
-        <Sidebar/>
+        <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<LoginPage />} />
+
+            {role === 'USER'  && <Route path="/*" element={<DashboardRoutes />} />}
+            {role === 'ADMIN' && <Route path="/*" element={<AdminRoutes     />} />}
+            {/*{role === "GUARD" && (*/}
+            {/*    <Route path="/guard/*" element={<GuardRoutes />} />*/}
+            {/*)}*/}
+
+            {/*<Route path="*" element={<Navigate to="/login" />} />*/}
+        </Routes>
     </>
   )
 }

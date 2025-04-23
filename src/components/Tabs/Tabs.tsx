@@ -1,31 +1,43 @@
 import * as React from 'react';
 import { TabContext, TabList } from '@mui/lab';
 import { Box, Tab } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const tabData = [
-    { label: 'Список пользователей' },
-    { label: 'Создание пользователя' },
-    { label: 'Карта' },
+const tabRoutes = [
+    { label: 'Список пользователей', path: 'userList' },
+    { label: 'Создание пользователя', path: 'registration' },
+    { label: 'Карта', path: 'map' }, // если карты ещё нет — можно временно убрать
 ];
 
-const MyTabs: React.FC = () => {
-    const [value, setValue] = React.useState<string>('2');
+const DynamicTabs = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const currentTab = React.useMemo(() => {
+        const match = tabRoutes.find(tab => location.pathname.includes(tab.path));
+        return match ? tabRoutes.indexOf(match).toString() : '0';
+    }, [location.pathname]);
 
     const handleChange = (_: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+        navigate(tabRoutes[Number(newValue)].path);
     };
 
     return (
-        <TabContext value={value}>
-            <Box sx={{position: 'relative', zIndex: 0}}>
-                <TabList onChange={handleChange} aria-label="dynamic tabs example">
-                    {tabData.map((tab, index) => (
-                        <Tab key={index} label={tab.label} value={`${index + 1}`} />
+        <TabContext value={currentTab}>
+            <Box sx={{ position: 'relative', zIndex: 0 }}>
+                <TabList onChange={handleChange} aria-label="navigation tabs">
+                    {tabRoutes.map((tab, index) => (
+                        <Tab
+                            key={index}
+                            label={tab.label}
+                            value={`${index}`}
+                            sx={{ backgroundColor: "#008A5E", color: "#FFF" }}
+                        />
                     ))}
                 </TabList>
             </Box>
         </TabContext>
     );
-}
+};
 
-export default MyTabs;
+export default DynamicTabs;

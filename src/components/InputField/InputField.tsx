@@ -1,47 +1,17 @@
-import { ChangeEvent } from 'react';
-import { TextField } from '@mui/material';
+import { TextField, TextFieldProps } from '@mui/material';
 
-type InputFieldProps = {
-    label: string;
-    type: string;
-    value: string;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    error?: string;
-    name: string;
-    placeholder: string;
-    className?: string;
-    fullWidth?: boolean;
-};
-
-const InputField = ({
-                        label,
-                        type,
-                        value,
-                        handleChange,
-                        error,
-                        name,
-                        placeholder,
-                        className,
-                        fullWidth,
-                    }: InputFieldProps) => {
+const InputField = ({ sx, ...props }: TextFieldProps) => {
     return (
         <TextField
-            className={className}
-            label={label}
-            type={type}
-            value={value}
-            onChange={handleChange}
-            name={name}
-            placeholder={placeholder}
-            variant="outlined"
-            fullWidth={fullWidth}
-            error={Boolean(error?.trim())}
-            helperText={error || ' '}
+            {...props}
+            fullWidth={props.fullWidth ?? true}
+            error={Boolean(props.error)}
+            helperText={props.helperText}
             sx={{
                 mb: 1,
                 '& input': {
                     borderRadius: '10px',
-                    border: "2px",
+                    border: '2px',
                     backgroundColor: 'transparent',
                     fontSize: '16px',
                     fontWeight: 700,
@@ -54,18 +24,11 @@ const InputField = ({
                     borderRadius: '10px',
                 },
                 '& .MuiFormLabel-root': {
-                    fontSize:"16px",
+                    fontSize: '16px',
                     fontWeight: 700,
                     fontFamily: 'Nunito',
                 },
-                '& .MuiFormHelperText-root': {
-                    fontSize: '10px',
-                    fontFamily: 'Nunito',
-                    color: 'error.main',
-                    fontWeight: 600,
-                    minHeight: '16px',
-                    marginTop: '4px'
-                },
+                ...sx, // <-- позволяет переопределять стиль при необходимости
             }}
         />
     );

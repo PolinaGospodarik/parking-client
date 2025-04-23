@@ -1,120 +1,106 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
+import { useEffect } from 'react';
+import { AppProvider, Navigation, type Session } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid';
+import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 
 import theme from '../../common/theme/theme.ts';
-import Logo from "../Header/Logo/Logo.tsx";
+import Logo from '../Header/Logo/Logo.tsx';
 
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import HistoryIcon from '@mui/icons-material/History';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 
+import { signOut, userGet } from '../../redux/slice/loginSlice.ts';
+import { useAppDispatch, useAppSelector } from '../../hook.ts';
+
+
 const NAVIGATION: Navigation = [
     {
-        segment: 'parking',
+        segment: 'user/parking',
         title: 'Мои парковки',
-        icon: <LocalParkingIcon/>,
+        icon: <LocalParkingIcon />,
     },
     {
-        segment: 'reservation',
+        segment: 'user/booking',
         title: 'Бронирование',
-        icon: <CalendarMonthIcon/>
+        icon: <CalendarMonthIcon />,
     },
     {
-        segment: 'car',
+        segment: 'user/car',
         title: 'Мои машины',
-        icon: <DirectionsCarIcon/>,
+        icon: <DirectionsCarIcon />,
     },
     {
-        segment: 'history',
+        segment: 'user/history',
         title: 'История',
-        icon: <HistoryIcon/>,
+        icon: <HistoryIcon />,
     },
 ];
 
+export default function DashboardLayoutBasic() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
-function useDemoRouter(initialPath: string): Router {
-    const [pathname, setPathname] = React.useState(initialPath);
+    const user = useAppSelector((state) => state.login.user);
+
+    useEffect(() => {
+        dispatch(userGet());
+    }, [dispatch]);
 
     const router = React.useMemo(() => {
         return {
-            pathname,
-            searchParams: new URLSearchParams(),
-            navigate: (path: string | URL) => setPathname(String(path)),
+            pathname: location.pathname,
+            searchParams: new URLSearchParams(location.search),
+            navigate: (path: string | URL) => navigate(String(path)),
         };
-    }, [pathname]);
+    }, [location, navigate]);
 
-    return router;
-}
+    const handleSignOut = () => {
+        dispatch(signOut());
+        navigate('/login');
+    };
 
-const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-    backgroundColor: theme.palette.action.hover,
-    borderRadius: theme.shape.borderRadius,
-    height,
-    content: '" "',
-}));
+    const session: Session | null = user
+        ? {
+            user: {
+                name: user.fullName,
+                email: user.phoneNumber,
+                image:  '',
+            },
+        }
+        : null;
 
-export default function DashboardLayoutBasic(props: any) {
-    const { window } = props;
-
-    const router = useDemoRouter('/dashboard');
-
-    // Remove this const when copying and pasting into your project.
-    const demoWindow = window ? window() : undefined;
+    const authentication = React.useMemo(() => {
+        return {
+            signIn: () => {
+                dispatch(userGet());
+            },
+            signOut: () => {
+                handleSignOut();
+            },
+        };
+    }, [dispatch]);
 
     return (
         <AppProvider
+            session={session}
+            authentication={authentication}
             navigation={NAVIGATION}
             branding={{
-                logo: <Logo/>,
+                logo: <Logo />,
                 title: 'Парковка БНТУ',
                 homeUrl: '/',
             }}
             router={router}
             theme={theme}
-            window={demoWindow}
         >
-            <DashboardLayout>
+            <DashboardLayout sx={{ backgroundColor: 'secondary.light' }}>
                 <PageContainer>
-                    <Grid container spacing={1}>
-                        <Grid size={5} />
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={4}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={8}>
-                            <Skeleton height={100} />
-                        </Grid>
-
-                        <Grid size={12}>
-                            <Skeleton height={150} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                    </Grid>
+                    <Outlet />
                 </PageContainer>
             </DashboardLayout>
         </AppProvider>
