@@ -61,11 +61,30 @@ export const admin = createAsyncThunk<User[], void, { rejectValue: string }>(
     }
 );
 
+export const adminSearch = createAsyncThunk<User[], string, { rejectValue: string }>(
+    'admin/adminSearch',
+    async (query, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${API_URL}admin/user/search?q=${encodeURIComponent(query)}`);
+            console.log(response.data)
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data?.message || "Ошибка регистрации");
+        }
+
+    }
+);
+
 
 export const adminSlice = createSlice({
     name: "admin",
     initialState,
-    reducers: {},
+    reducers: {
+        resetSearch: (state) => {
+            state.loading = false;
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(admin.pending, (state) => {
@@ -75,14 +94,26 @@ export const adminSlice = createSlice({
             .addCase(admin.fulfilled, (state, {payload}) => {
                 state.loading = false;
                 state.users = payload;
-
             })
             .addCase(admin.rejected, (state) => {
+                state.loading = false;
+            })
+
+            //поиск
+            .addCase(adminSearch.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(adminSearch.fulfilled, (state, {payload}) => {
+                state.loading = false;
+                state.users = payload;
+            })
+            .addCase(adminSearch.rejected, (state) => {
                 state.loading = false;
             })
 
     }
 })
 const {actions, reducer} = adminSlice;
-export const {} = actions;
+export const {resetSearch} = actions;
 export default reducer;

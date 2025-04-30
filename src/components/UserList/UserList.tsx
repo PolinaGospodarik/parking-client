@@ -19,7 +19,7 @@ import { admin } from '../../redux/slice/adminSlice.ts';
 import { useAppDispatch, useAppSelector } from "../../hook.ts";
 import { Booking, User } from "../../redux/slice/adminSlice.ts";
 
-export default function AdminAccordion() {
+const AdminAccordion = () =>{
     const dispatch = useAppDispatch();
     const { users, loading } = useAppSelector(state => state.admin);
     const [expanded, setExpanded] = React.useState<number | false>(false);
@@ -139,3 +139,4 @@ export default function AdminAccordion() {
         </Box>
     );
 }
+export default AdminAccordion;

@@ -67,7 +67,7 @@ export const refreshAccessToken = createAsyncThunk<
         try {
             const response = await axios.post<AuthResponse>(
                 `${API_URL}auth/refresh`,
-                { refreshToken } // тело запроса — JSON
+                { refreshToken }
             );
 
             return response.data;

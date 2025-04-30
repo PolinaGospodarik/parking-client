@@ -1,8 +1,8 @@
 import {Routes, Route, Navigate} from 'react-router-dom';
-import UserList from "../components/UserList/UserList.tsx";
 import Header from "../components/Header/Header.tsx";
 import RegistrationForm from "../page/RegistrationPage/RegistrationForm/RegistrationForm.tsx";
 import ParkingMap from "../components/ParkingMap/ParkingMap.tsx";
+import AdminList from "../page/AdminList/AdminList.tsx";
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
            <Route path="admin" element={<Header/>}>
                <Route index element={<Navigate to="registration" replace />} />
                <Route path="registration" element={<RegistrationForm/>}/>
-               <Route path="userList" element={<UserList/>}/>
+               <Route path="userList" element={<AdminList/>}/>
                <Route path="map" element={<ParkingMap/>}/>
            </Route>
         </Routes>

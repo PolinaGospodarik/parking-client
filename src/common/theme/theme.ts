@@ -38,6 +38,13 @@ const theme = createTheme({
 
     },
     components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius: '10px'
+                }
+            }
+        },
         MuiBreadcrumbs: {
             styleOverrides: {
                 root: {
