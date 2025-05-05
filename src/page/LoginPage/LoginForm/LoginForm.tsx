@@ -45,7 +45,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <Box sx={{ maxWidth: 400, width: "100%" }}>
+            <Box sx={{ maxWidth: 400, width: "100%", px: "20px" }}>
                 <Typography variant="h4" mb="35px" sx={{ textAlign: "left" }}>
                     Вход
                 </Typography>
