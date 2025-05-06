@@ -1,39 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { User } from "../../types/types.ts";
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/";
-
-export type Booking = {
-    id: number;
-    carId: number;
-    placeNumber: number;
-    startTime: string;
-    endTime: string;
-    status: string;
-    createdAt: string;
-    updatedAt: string;
-};
-
-export type Car = {
-    id: number;
-    userId: number;
-    carNumber: string;
-    createdAt: string;
-    updatedAt: string;
-    Booking: Booking[];
-};
-
-export type User = {
-    id: number;
-    fullName: string;
-    phoneNumber: string;
-    password: string;
-    role: string;
-    cars: Car[];
-    allBookings: Booking[];
-    loading: boolean;
-    error: string | null;
-};
 
 type AdminState = {
     users: User[];

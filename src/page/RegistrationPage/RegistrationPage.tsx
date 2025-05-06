@@ -1,5 +1,5 @@
 import RegistrationForm from "./RegistrationForm/RegistrationForm.tsx";
-import Header from "../../components/Header/Header.tsx";
+import HeaderAdmin from "../../components/Header/HeaderAdmin.tsx";
 import {Box} from "@mui/material";
 
 
@@ -7,7 +7,7 @@ const RegistrationPage = () => {
     return (
         <>
             <Box sx={{ backgroundColor: 'secondary.light', height:"100vh" }}>
-                <Header/>
+                <HeaderAdmin/>
                 <RegistrationForm/>
             </Box>
         </>

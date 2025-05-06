@@ -17,7 +17,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { admin } from '../../redux/slice/adminSlice.ts';
 import { useAppDispatch, useAppSelector } from "../../hook.ts";
-import { Booking, User } from "../../redux/slice/adminSlice.ts";
+import { Booking, User } from "../../types/types.ts";
 
 const AdminAccordion = () =>{
     const dispatch = useAppDispatch();
@@ -50,6 +50,7 @@ const AdminAccordion = () =>{
                     key={user.id}
                     expanded={expanded === index}
                     onChange={() => handleAccordionChange(index)}
+                    sx={{mb: 1}}
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Box display="flex" justifyContent="space-between" width="100%" sx={{ px: 1 }}>
@@ -77,7 +78,7 @@ const AdminAccordion = () =>{
                             <Box sx={{ flexGrow: 1, px: 2 }}>
                                 <Typography variant="h5" sx={{ pb: 2 }}>ИСТОРИЯ</Typography>
                                 {tabIndex[user.id] === 0 ? (
-                                    <Table component={Paper} sx={{ backgroundColor: "secondary.light" }}>
+                                    <Table component={Paper}>
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>ID машины</TableCell>

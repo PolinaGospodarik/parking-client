@@ -1,17 +1,18 @@
 import { useEffect, useMemo } from 'react';
 import { Box, Container } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 import Logo from './Logo/Logo.tsx';
+import DynamicTabs from '../Tabs/Tabs.tsx';
 import { signOut, userGet } from '../../redux/slice/loginSlice.ts';
 
 import { useAppDispatch, useAppSelector } from "../../hook.ts";
 import { AppProvider, Session } from "@toolpad/core/AppProvider";
 import { Account } from "@toolpad/core";
-
 import theme from '../../common/theme/theme.ts';
 
-const Header = () => {
+
+const HeaderAdmin = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const user = useAppSelector((state) => state.login.user);
@@ -40,12 +41,15 @@ const Header = () => {
         signOut: handleSignOut,
     }), [dispatch]);
 
+
+
     return (
         <>
             <Box sx={{ backgroundColor: 'primary.main', py: 1 }}>
                 <Container maxWidth="lg">
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Logo/>
+                        <DynamicTabs/>
                         <AppProvider
                             authentication={authentication}
                             session={session}
@@ -61,8 +65,11 @@ const Header = () => {
                     </Box>
                 </Container>
             </Box>
+            <Container maxWidth="lg" sx={{ mt: 4 }}>
+                <Outlet/>
+            </Container>
         </>
     );
 };
 
-export default Header;
+export default HeaderAdmin;
